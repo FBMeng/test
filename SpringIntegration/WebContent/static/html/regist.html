@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>注册</title>
+<link rel="stylesheet" type="text/css" href="../css/regist.css">
+<script src="../js/jquery-1.8.0.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="regist">
+		<!-- <form> -->
+		<div class="note"></div>
+		<input type="text" class="name" placeholder="您的id">
+		<input type="text" class="nickname" placeholder="您的昵称">
+		<input type="password" class="password" placeholder="您的密码">
+		<input type="button" class="button" value="注册">
+		<!-- <input type="button" value="登录"> -->
+		<div class="login">已有账号，请<a href="./login.html">登录</a></div>
+	<!-- </form> -->
+	</div>
+	
+	<script>
+		$(".button").click(function(){
+			var datas ={};
+			var id=$(".name").val();
+			var password=$(".password").val();
+			var nickname=$(".nickname").val();
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"http://localhost:8080/SpringIntegration/regist",
+				data:{"id":id,"nickname":nickname,"password":password},
+				success:function(data){
+					/* location.href:"./login.html"; */
+					/* window.alert(data.describe); */
+					$(".note").html(data.describe);
+				}
+			});
+		})
+	</script>
+		
+</body>
+</html>

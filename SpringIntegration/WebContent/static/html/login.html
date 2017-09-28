@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+<link rel="stylesheet" type="text/css" href="../css/login.css">
+<script src="../js/jquery-1.8.0.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="regist">
+		<!-- <form> -->
+		<input type="text" class="name" placeholder="您的id"><br><br>
+		<input type="password" class="password" placeholder="您的密码"><br><br>
+		<input type="button" class="button" value="登录">
+		<!-- <input type="button" value="登录"> -->
+		<div class="login">还没有账号，请前往<a href="./regist.html">注册</a></div>
+	<!-- </form> -->
+	</div>
+	<script type="text/javascript">
+		$(".button").click(function(){
+			var datas ={};
+			var id=$(".name").val();
+			var password=$(".password").val();
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"http://localhost:8080/SpringIntegration/login",
+				data:{"id":id,"password":password},
+				success:function(data){
+					location.href="http://localhost:8080/SpringIntegration/static/html/regist.html";
+					/* window.alert(data.describe); */
+					/* $(".note").html(data.describe); */
+				}
+			});
+		})
+	</script>
+</body>
+</html>
